@@ -27,7 +27,7 @@ export default function Timer() {
         The market is {data?.isTheStockMarketOpen ? 'open' : 'closed'}
       </Text>
       <Text fontSize="6xl">
-        {`There is ${
+        {`There are ${
           data?.isTheStockMarketOpen ? timeToClose : timeToOpen
         } until market ${data?.isTheStockMarketOpen ? 'close' : 'open'}`}
       </Text>
