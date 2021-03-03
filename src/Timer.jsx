@@ -1,7 +1,6 @@
+import { Text } from '@chakra-ui/react';
+import { formatDistanceToNow } from 'date-fns';
 import React from 'react';
-import { Heading, Text } from '@chakra-ui/react';
-import Countdown from 'react-countdown';
-import { formatDistanceToNow, compareAsc } from 'date-fns';
 import useTradingHours from './hooks/useTradingHours';
 
 export default function Timer() {
@@ -19,15 +18,19 @@ export default function Timer() {
       includeSeconds: true,
     },
   );
-  const isBeforeClose =
-    compareAsc(new Date().now, new Date(year, month - 1, date, 13, 0, 0)) === 1;
+  // const isBeforeClose =
+  //   compareAsc(new Date().now, new Date(year, month - 1, date, 13, 0, 0)) === 1;
+
   return (
     <>
-      <Text>
-        Is market open: {!isLoading && data ? data.isTheStockMarketOpen : null}
+      <Text fontSize="6xl">
+        The market is {data?.isTheStockMarketOpen ? 'open' : 'closed'}
       </Text>
-      <Text>Time until Market {isBeforeClose ? 'Close' : 'Open'}</Text>
-      <Text>{isBeforeClose ? timeToClose : timeToOpen}</Text>
+      <Text fontSize="6xl">
+        {`There is ${
+          data?.isTheStockMarketOpen ? timeToClose : timeToOpen
+        } until market ${data?.isTheStockMarketOpen ? 'close' : 'open'}`}
+      </Text>
     </>
   );
 }
